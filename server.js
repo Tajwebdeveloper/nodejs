@@ -31,4 +31,4 @@ http.createServer(function (req, res) {
     res.write(data)
     return res.end()
   });
-}).listen(8080); //the server object listens on port 8080
+}).listen(process.env.PORT || 3000); //the server object listens on port 8080
