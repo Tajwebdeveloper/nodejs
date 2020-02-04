@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Javascript Ajax Testing</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      /*var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var responseObject =JSON.parse(this.responseText).results.books;
+          var count = responseObject.length;
+          var list = document.createElement("UL");
+          document.getElementById("app").append(list)
+          var listText = "";
+        //  for(i=1; i<count; i++){
+        //     var listitem = document.createElement("LI");
+        //     listitem.innerHTML = responseObject[i].description;
+        //     list.appendChild(listitem);
+        //   }
+
+          // responseObject.map(function(data){
+          //   listText += "<li>"+ data.title + "</li>";
+          // })
+          responseObject.map( (data) => listText += "<li>"+ data.title + "</li>");
+          
+          list.innerHTML = listText;
+         
+        }
+      };
+      xhttp.open("GET", "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=uMfd8LbWVr2Td07MfdPXTA610jprFA9Z", true);
+      xhttp.send();
+      */
+
+
+      var list = document.createElement("UL");
+      var listText = "";
+      fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=uMfd8LbWVr2Td07MfdPXTA610jprFA9Z')
+      .then(response => response.json())
+      .then(commits => commits.results.books.map( (data) => listText += "<li>"+ data.title + "</li>"))
+      .then(function(){
+        list.innerHTML = listText;
+        document.getElementById("app").append(list)
+      });
+
+
+      
+      
+      
+    </script>
+  </body>
+</html>
